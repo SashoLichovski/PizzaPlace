@@ -19,5 +19,10 @@ namespace PizzaPlace.Repositories
         {
             return context.MenuItems.ToList();
         }
+
+        public MenuItem GetById(int id)
+        {
+            return context.MenuItems.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

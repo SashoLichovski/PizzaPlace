@@ -2,7 +2,7 @@
     $('.responsive').slick({
         dots: true,
         infinite: true,
-        speed: 300,
+        speed: 800,
         slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [
@@ -29,9 +29,6 @@
                     slidesToScroll: 1
                 }
             }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
         ]
     });
 });

@@ -9,5 +9,6 @@ namespace PizzaPlace.Services.Interfaces
     public interface IMenuItemService
     {
         List<MenuItem> GetAll();
+        MenuItem GetById(int id);
     }
 }

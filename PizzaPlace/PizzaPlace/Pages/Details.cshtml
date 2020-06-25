@@ -1,0 +1,22 @@
+﻿@page
+@model PizzaPlace.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/details.css" />
+}
+<div class="pageHeader">
+    <h3>Details</h3>
+</div>
+
+<div class="cardContainer">
+    <div class="imgContainer">
+        <img src="@Model.MenuItem.ImageUrl" />
+    </div>
+    <div class="contentContainer">
+        <h5>@Model.MenuItem.Title</h5>
+        <p>@Model.MenuItem.Description</p>
+        <p>$@Model.MenuItem.Price</p>
+    </div>
+</div>
