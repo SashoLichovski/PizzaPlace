@@ -5,9 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PizzaPlace.Models;
+using PizzaPlace.Repositories;
+using PizzaPlace.Repositories.Interfaces;
+using PizzaPlace.Services;
+using PizzaPlace.Services.Interfaces;
 
 namespace PizzaPlace
 {
@@ -23,6 +29,12 @@ namespace PizzaPlace
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<PizzaPlaceDbContext>(options => options.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog = PizzaPlaceDb; Integrated Security = true"));
+
+            services.AddTransient<IMenuItemRepository, MenuItemRepository>();
+            services.AddTransient<IMenuItemService, MenuItemService>();
+
             services.AddRazorPages();
         }
 
