@@ -14,5 +14,6 @@ namespace PizzaPlace.Models
         }
 
         public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<SpecialOffer> SpecialOffers { get; set; }
     }
 }

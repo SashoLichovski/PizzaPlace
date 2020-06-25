@@ -3,18 +3,34 @@
 @{
     ViewData["Title"] = "Menu";
 }
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/menu.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+}
 
     <div class="menuContainer">
         @foreach (var item in Model.MenuItems)
         {
-            <div class="card" style="width: 18rem;">
-                <img src="@item.ImageUrl" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">@item.Description</p>
-                    <a href="#" class="btn btn-primary">See more</a>
-                </div>
+        <div class="cardContainer">
+            <div class="imgContainer">
+                <img src="@item.ImageUrl" />
             </div>
+            <div class="contentContainer">
+                <h5>@item.Title</h5>
+                <p>@item.Description</p>
+                <a href="#">Details</a>
+            </div>
+        </div>
         }
+
+        
     </div>
 
+    @*<div class="card" style="width: 18rem;">
+        <img src="@item.ImageUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">@item.Description</p>
+            <a href="#" class="btn btn-primary">See more</a>
+        </div>
+    </div>*@

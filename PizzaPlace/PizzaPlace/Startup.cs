@@ -35,6 +35,9 @@ namespace PizzaPlace
             services.AddTransient<IMenuItemRepository, MenuItemRepository>();
             services.AddTransient<IMenuItemService, MenuItemService>();
 
+            services.AddTransient<IOfferRepository, OfferRepository>();
+            services.AddTransient<IOfferService, OfferService>();
+
             services.AddRazorPages();
         }
 

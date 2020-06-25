@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick-theme.css" />
+}
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -26,3 +29,29 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+<div class="offerContainer responsive">
+    @foreach (var item in Model.SpecialOffers)
+    {
+        <div class="offferCard">
+            <div class="offerHeader">
+                <h5>@item.Title</h5>
+                <div>
+                    <p>$@item.Price</p>
+                </div>
+            </div>
+            <div class="offerBody">
+                <button class="btn btn-success btn">Order</button>
+                <h5>Description</h5>
+                <p>@item.Description</p>
+                <h5>Valid to</h5>
+                <span>@item.ValidTo.ToString("MMMM, dd yyyy")</span>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts{ 
+    <script src="~/lib/slick-1.8.1/slick/slick.js"></script>
+}
