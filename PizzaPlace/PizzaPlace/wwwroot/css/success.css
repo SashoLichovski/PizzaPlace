@@ -1,0 +1,8 @@
+﻿.container {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.container a {
+    color: blue !important;
+}

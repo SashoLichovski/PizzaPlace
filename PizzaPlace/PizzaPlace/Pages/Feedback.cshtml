@@ -1,0 +1,28 @@
+﻿@page
+@model PizzaPlace.Pages.FeedbackModel
+@{
+    ViewData["Title"] = "Feedback";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/form.css" />
+}
+
+<div class="container">
+
+    <h3 class="text-light">We appreciate your feedback</h3>
+
+    <form asp-page="Feedback" method="post">
+        <input class="form-control input" placeholder="First name" asp-for="@Model.Feedback.Name" />
+        <span class="text-danger" asp-validation-for="@Model.Feedback.Name"></span>
+        <input class="form-control input" placeholder="Last name" asp-for="@Model.Feedback.Surname" />
+        <span class="text-danger" asp-validation-for="@Model.Feedback.Surname"></span>
+        <input class="form-control input" placeholder="Email adress" asp-for="@Model.Feedback.EmailAdress" />
+        <span class="text-danger" asp-validation-for="@Model.Feedback.EmailAdress"></span>
+        <textarea class="form-control input" placeholder="Feedback" asp-for="@Model.Feedback.Message"></textarea>
+        <span class="text-danger" asp-validation-for="@Model.Feedback.Message"></span>
+        <br />
+        <input type="submit" value="Submit" class="btn btn-success input" />
+    </form>
+
+</div>
+

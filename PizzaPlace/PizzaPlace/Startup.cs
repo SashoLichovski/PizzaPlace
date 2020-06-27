@@ -38,6 +38,15 @@ namespace PizzaPlace
             services.AddTransient<IOfferRepository, OfferRepository>();
             services.AddTransient<IOfferService, OfferService>();
 
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
+            services.AddTransient<IFeedbackService, FeedbackService>();
+
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderService, OrderService>();
+
+            services.AddTransient<ISubscribeRepository, SubscribeRepository>();
+            services.AddTransient<ISubscribeService, SubscribeService>();
+
             services.AddRazorPages();
         }
 

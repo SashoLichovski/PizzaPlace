@@ -1,0 +1,50 @@
+﻿@page
+@model PizzaPlace.Pages.OrderModel
+@{
+    ViewData["Title"] = "Order";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/form.css" />
+}
+
+<div class="container">
+
+    <h3 class="text-light">Make your order</h3>
+
+    <form asp-page="Order" method="post">
+        <input class="form-control input" placeholder="First name" asp-for="@Model.Order.Name" />
+        <span class="text-danger" asp-validation-for="@Model.Order.Name"></span>
+
+        <input class="form-control input" placeholder="Last name" asp-for="@Model.Order.Surname" />
+        <span class="text-danger" asp-validation-for="@Model.Order.Surname"></span>
+
+        <input class="form-control input" placeholder="Adress" asp-for="@Model.Order.Address" />
+        <span class="text-danger" asp-validation-for="@Model.Order.Address"></span>
+
+        <input class="form-control input" placeholder="Phone number" asp-for="@Model.Order.Phone" />
+        <span class="text-danger" asp-validation-for="@Model.Order.Phone"></span>
+
+        <textarea class="form-control input" placeholder="Your order details" asp-for="@Model.Order.Message"></textarea>
+        <span class="text-danger" asp-validation-for="@Model.Order.Message"></span>
+
+        <br />
+        <input type="submit" value="Order" class="btn btn-success input" />
+    </form>
+
+    <br />
+    <br />
+
+    <h3 class="text-light">Subscribe</h3>
+
+    <form asp-page="Order" asp-page-handler="Subscribe" method="post">
+        <input class="form-control input" placeholder="Email adress" id="email" name="email" />
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <span class="text-danger">@Model.ErrorMessage</span>
+        }
+        <br />
+        <input type="submit" value="Subscribe" class="btn btn-success input" />
+    </form>
+
+</div>
+

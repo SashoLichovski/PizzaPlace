@@ -1,0 +1,15 @@
+﻿@page
+@model PizzaPlace.Pages.SuccessModel
+@{
+    ViewData["Title"] = "Success";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/success.css" />
+}
+
+<div class="container">
+    <h3>@Model.Message</h3>
+    <br />
+    <p>Back to <a asp-page="/Index">Home page</a></p>
+</div>
+
