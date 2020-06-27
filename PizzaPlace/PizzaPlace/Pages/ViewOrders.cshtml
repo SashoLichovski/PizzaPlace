@@ -1,0 +1,75 @@
+﻿@page
+@model PizzaPlace.Pages.ViewOrdersModel
+@{
+    ViewData["Title"] = "ViewOrders";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/table.css" />
+}
+<div class="container">
+
+    <h3>Manage orders</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Created on</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                string status;
+                if (order.IsProcessed)
+                {
+                    status = "Processed";
+                }
+                else
+                {
+                    status = "Pending";
+                }
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.DateCreated.ToString("dddd, dd-MM, hh:mm tt")</td>
+                <td>@status</td>
+                <td>
+                    @if (order.IsProcessed)
+                    {
+                        <button disabled class="btn btn-primary btn-sm">Processed</button> 
+                    }
+                    else
+                    {
+                        <a class="btn btn-success btn-sm" asp-page="ViewOrders" asp-page-handler="Process" asp-route-id="@order.Id">Process order</a> 
+                    }
+                    <button class="btn btn-info btn-sm" onclick="ToggleDetails(@order.Id, event)">Details</button>
+                </td>
+            </tr>
+            <tr class="orderDetailsRow" id="@order.Id">
+                <td colspan="4">
+                    <div class="orderDetails">
+                        <p><b>Full name: </b>@order.Name @order.Surname</p>
+                        <p><b>Phone number: </b>@order.Phone</p>
+                        <p><b>Adress: </b>@order.Address</p>
+                        <p><b>Order details: </b>@order.Message</p>
+                        @if (order.DateProcessed == new DateTime())
+                        {
+                            <p><b>Processed on: </b> Pending</p>
+                        }
+                        else
+                        {
+                            <p><b>Processed on: </b> @order.DateProcessed.ToString("dddd, dd-MM, hh:mm tt")</p>
+                        }
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/table.js"></script>
+}

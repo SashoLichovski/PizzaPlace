@@ -1,0 +1,25 @@
+﻿.container {
+    color: white;
+}
+
+table {
+    width: 100%;
+}
+
+table tr {
+    border-top: 1px solid white;
+}
+
+table th, td{
+    padding: 12px;
+    text-align: center;
+}
+
+.orderDetails {
+    margin-left: 50px;
+    text-align: start;
+}
+
+.hide{
+    display: none;
+}

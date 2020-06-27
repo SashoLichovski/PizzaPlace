@@ -21,5 +21,9 @@ namespace PizzaPlace.Models
         public string Phone { get; set; }
         [Required]
         public string Message { get; set; }
+        [Required]
+        public DateTime DateCreated { get; set; }
+        public DateTime DateProcessed { get; set; }
+        public bool IsProcessed { get; set; }
     }
 }

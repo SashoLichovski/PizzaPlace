@@ -9,5 +9,7 @@ namespace PizzaPlace.Services.Interfaces
     public interface IOrderService
     {
         void Add(Order order);
+        List<Order> GetAll();
+        void Process(int id);
     }
 }

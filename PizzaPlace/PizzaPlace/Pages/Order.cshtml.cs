@@ -38,7 +38,8 @@ namespace PizzaPlace.Pages
                     Surname = Order.Surname,
                     Address = Order.Address,
                     Phone = Order.Phone,
-                    Message = Order.Message
+                    Message = Order.Message,
+                    DateCreated = DateTime.Now
                 };
                 orderService.Add(order);
 
