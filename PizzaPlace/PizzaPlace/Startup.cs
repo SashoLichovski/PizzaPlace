@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ using PizzaPlace.Models;
 using PizzaPlace.Repositories;
 using PizzaPlace.Repositories.Interfaces;
 using PizzaPlace.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PizzaPlace.Services.Interfaces;
 
 namespace PizzaPlace
@@ -32,6 +34,10 @@ namespace PizzaPlace
 
             services.AddDbContext<PizzaPlaceDbContext>(options => options.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog = PizzaPlaceDb; Integrated Security = true"));
 
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<PizzaPlaceDbContext>();
+
             services.AddTransient<IMenuItemRepository, MenuItemRepository>();
             services.AddTransient<IMenuItemService, MenuItemService>();
 
@@ -47,6 +53,7 @@ namespace PizzaPlace
             services.AddTransient<ISubscribeRepository, SubscribeRepository>();
             services.AddTransient<ISubscribeService, SubscribeService>();
 
+            services.AddMvc();
             services.AddRazorPages();
         }
 
@@ -69,10 +76,12 @@ namespace PizzaPlace
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

@@ -42,7 +42,7 @@
                     }
                     else
                     {
-                        <a class="btn btn-success btn-sm" asp-page="ViewOrders" asp-page-handler="Process" asp-route-id="@order.Id">Process order</a> 
+                        <a class="btn btn-success btn-sm" asp-page="ViewOrders" asp-page-handler="Process" asp-route-id="@order.Id" onclick="return alert(`Order has been processed`)">Process order</a> 
                     }
                     <button class="btn btn-info btn-sm" onclick="ToggleDetails(@order.Id, event)">Details</button>
                 </td>
