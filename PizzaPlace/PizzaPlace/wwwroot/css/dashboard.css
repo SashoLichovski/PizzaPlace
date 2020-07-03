@@ -1,0 +1,32 @@
+﻿.optionsContainer {
+    border-top: 1px solid rgba(255, 255, 255, 0.74);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.74);
+    padding: 20px;
+    display: flex;
+}
+
+.optionsContainer .orderOption {
+    margin-right: 10px;
+}
+
+.fa-list, .fa-pizza-slice, .fa-truck, .fa-check-circle {
+    font-size: 25px;
+}
+
+.orderOption {
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+}
+
+.orderOption h5{
+    font-size: 22px;
+    margin-left: 5px;
+    margin-bottom: 0 !important;
+}
+
+a{
+    color: whitesmoke !important;
+}

@@ -22,9 +22,22 @@ namespace PizzaPlace.Services
             orderRepository.Add(order);
         }
 
+        public void Deliver(int id)
+        {
+            var order = orderRepository.GetById(id);
+            order.IsDelivered = true;
+            order.DateDelivered = DateTime.Now;
+            orderRepository.Update(order);
+        }
+
         public List<Order> GetAll()
         {
             return orderRepository.GetAll();
+        }
+
+        public List<Order> GetByStatus(bool IsProcessed, bool isDelivered)
+        {
+            return orderRepository.GetByStatus(IsProcessed, isDelivered);
         }
 
         public void Process(int id)

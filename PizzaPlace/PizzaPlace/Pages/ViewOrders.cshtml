@@ -1,14 +1,14 @@
 ﻿@page
 @model PizzaPlace.Pages.ViewOrdersModel
 @{
-    ViewData["Title"] = "ViewOrders";
+    Layout = "_LayoutDashboard";
 }
 @section Styles{ 
     <link rel="stylesheet" href="~/css/table.css" />
 }
 <div class="container">
 
-    <h3>Manage orders</h3>
+    <h3>@ViewData["Title"]</h3>
 
     <table>
         <thead>
@@ -23,9 +23,13 @@
             @foreach (var order in Model.Orders)
             {
                 string status;
-                if (order.IsProcessed)
+                if (order.IsProcessed && !order.IsDelivered)
                 {
-                    status = "Processed";
+                    status = "Ready for delivery";
+                }
+                else if (order.IsProcessed && order.IsDelivered)
+                {
+                    status = "Order complete";
                 }
                 else
                 {
@@ -36,15 +40,19 @@
                 <td>@order.DateCreated.ToString("dddd, dd-MM, hh:mm tt")</td>
                 <td>@status</td>
                 <td>
-                    @if (order.IsProcessed)
+                    @if (order.IsProcessed && !order.IsDelivered)
                     {
-                        <button disabled class="btn btn-primary btn-sm">Processed</button> 
+                    <a class="btn btn-primary btn-sm" asp-page="ViewOrders" asp-page-handler="Deliver" asp-route-id="@order.Id">Deliver order</a>
+                    }
+                    else if (order.IsDelivered && order.IsProcessed)
+                    {
+                        <button disabled class="btn btn-success btn-sm">Done</button>
                     }
                     else
                     {
-                        <a class="btn btn-success btn-sm" asp-page="ViewOrders" asp-page-handler="Process" asp-route-id="@order.Id" onclick="return alert(`Order has been processed`)">Process order</a> 
+                        <a class="btn btn-primary btn-sm" asp-page="ViewOrders" asp-page-handler="Process" asp-route-id="@order.Id">Process order</a> 
                     }
-                    <button class="btn btn-info btn-sm" onclick="ToggleDetails(@order.Id, event)">Details</button>
+                     | <button class="btn btn-info btn-sm" onclick="ToggleDetails(@order.Id, event)">Details</button>
                 </td>
             </tr>
             <tr class="orderDetailsRow" id="@order.Id">
@@ -62,6 +70,14 @@
                         {
                             <p><b>Processed on: </b> @order.DateProcessed.ToString("dddd, dd-MM, hh:mm tt")</p>
                         }
+                        @if (order.DateDelivered == new DateTime())
+                        {
+                            <p><b>Delivered on: </b> Pending</p>
+                        }
+                        else
+                        {
+                            <p><b>Delivered on: </b> @order.DateDelivered.ToString("dddd, dd-MM, hh:mm tt")</p>
+                        }
                     </div>
                 </td>
             </tr>
@@ -69,6 +85,8 @@
         </tbody>
     </table>
 </div>
+<br />
+<div>Back to <a asp-page="Dashboard">dashboard menu</a></div>
 
 @section Scripts{ 
     <script src="~/js/table.js"></script>

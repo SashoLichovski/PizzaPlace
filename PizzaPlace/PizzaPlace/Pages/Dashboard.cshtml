@@ -1,8 +1,83 @@
 ﻿@page
+
 @model PizzaPlace.Pages.DashboardModel
 @{
     ViewData["Title"] = "Dashboard";
+    Layout = "_LayoutDashboard";
 }
+@section Styles{
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+}
+<h3>Orders</h3>
+<div class="optionsContainer">
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-page="ViewOrders">
+            <div class="orderOption">
+                <i class="fas fa-list"></i>
+                <h5>All</h5>
+            </div>
+        </a>
+
+        <a asp-page="ViewOrders" asp-page-handler="NotProcessed">
+            <div class="orderOption">
+                <i class="fas fa-pizza-slice"></i>
+                <h5>Not processed</h5>
+            </div>
+        </a>
+
+        <a asp-page="ViewOrders" asp-page-handler="Processed">
+            <div class="orderOption">
+                <i class="fas fa-truck"></i>
+                <h5>For delivery</h5>
+            </div>
+        </a>
+
+        <a asp-page="ViewOrders" asp-page-handler="Done">
+            <div class="orderOption">
+                <i class="far fa-check-circle"></i>
+                <h5>Done</h5>
+            </div>
+        </a>
+    }
+
+    @if (User.IsInRole("cook"))
+    {
+        <a asp-page="ViewOrders" asp-page-handler="NotProcessed">
+            <div class="orderOption">
+                <i class="far fa-clock"></i>
+                <h5>Not processed</h5>
+            </div>
+        </a>
+    }
+
+    @if (User.IsInRole("delivery"))
+    {
+        <a asp-page="ViewOrders" asp-page-handler="Processed">
+            <div class="orderOption">
+                <i class="fas fa-truck"></i>
+                <h5>For delivery</h5>
+            </div>
+        </a>
+    }
 
 
+</div>
 
+@if (User.IsInRole("admin"))
+{
+    <br />
+    <br />
+
+    <h3>Users</h3>
+    <div class="optionsContainer">
+
+        <a asp-page="ViewUsers">
+            <div class="orderOption">
+                <i class="fas fa-list"></i>
+                <h5>All</h5>
+            </div>
+        </a>
+
+    </div>
+}

@@ -23,5 +23,7 @@ namespace PizzaPlace.ViewModels
         public DateTime DateCreated { get; set; }
         public DateTime DateProcessed { get; set; }
         public bool IsProcessed { get; set; }
+        public bool IsDelivered { get; set; }
+        public DateTime DateDelivered { get; set; }
     }
 }

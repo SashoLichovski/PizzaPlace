@@ -1,0 +1,36 @@
+﻿@page
+@model PizzaPlace.Pages.ViewUsersModel
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/table.css" />
+    <style>
+        table th, td {
+            text-align: start;
+        }
+    </style>
+}
+
+<h1>@ViewData["Title"]</h1>
+<table>
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>****</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
